@@ -1,0 +1,125 @@
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوت التداول - سهل وسريع</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "crypto-js": "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>بوت التداول الآلي</h1>
+            <div class="header-buttons">
+                <button id="loginBtn" class="btn primary">تسجيل الدخول</button>
+                <button id="registerBtn" class="btn info">تسجيل جديد</button>
+                <button id="settingsBtn" class="btn info hidden">الإعدادات</button>
+                <button id="viewUsersBtn" class="btn primary hidden">عرض المستخدمين</button>
+                <button id="logoutBtn" class="btn danger hidden">تسجيل خروج</button>
+            </div>
+        </div>
+
+        <div class="trading-mode">
+            <span id="tradingModeText">وضع التداول: وهمي</span>
+            <button id="toggleTradingModeBtn" class="btn danger">تبديل وضع التداول</button>
+            <button id="refreshTradingModeBtn" class="btn info">تحديث الوضع</button>
+        </div>
+
+        <div class="status">
+            <p id="botStatus">حالة البوت: غير نشط</p>
+            <p id="analysisStatus">حالة التحليل: متوقف</p>
+        </div>
+        
+        <div id="marketAnalysis" class="market-analysis">
+            <h3>تحليل السوق</h3>
+            <p>سيظهر تحليل السوق هنا عند تشغيل البوت</p>
+        </div>
+
+        <div class="trading-controls">
+            <div class="settings-panel">
+                <h2>إعدادات التداول</h2>
+                <div class="setting-group">
+                    <label for="tradingPair">زوج التداول</label>
+                    <select id="tradingPair">
+                        <option value="BTCUSDT">BTC/USDT</option>
+                        <option value="ETHUSDT">ETH/USDT</option>
+                        <option value="BNBUSDT">BNB/USDT</option>
+                        <option value="ADAUSDT">ADA/USDT</option>
+                        <option value="DOGEUSDT">DOGE/USDT</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label for="tradeAmount">مبلغ التداول (USDT)</label>
+                    <input type="number" id="tradeAmount" value="100" min="10" step="10">
+                </div>
+                <div class="setting-group">
+                    <label for="maxRiskPercentage">نسبة المخاطرة القصوى (%)</label>
+                    <input type="number" id="maxRiskPercentage" value="2" min="0.5" max="50" step="0.5">
+                </div>
+                <div class="setting-group">
+                    <label for="leverageAmount">الرافعة المالية</label>
+                    <select id="leverageAmount">
+                        <option value="1">1x</option>
+                        <option value="2">2x</option>
+                        <option value="5" selected>5x</option>
+                        <option value="10">10x</option>
+                        <option value="20">20x</option>
+                    </select>
+                </div>
+                <div class="price-card">
+                    <p>السعر الحالي:</p>
+                    <p id="currentPrice">جاري التحميل...</p>
+                </div>
+            </div>
+            <div class="actions">
+                <button id="startTradingBtn" class="btn success">تشغيل البوت</button>
+                <button id="stopTradingBtn" class="btn danger">إيقاف البوت</button>
+                <button id="newTradeBtn" class="btn info">إنشاء صفقة جديدة</button>
+            </div>
+        </div>
+
+        <div class="stats-panel">
+            <div class="stat-card">
+                <h3>عدد الصفقات</h3>
+                <p id="totalTrades">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>الربح/الخسارة</h3>
+                <p id="profitLoss">0.00 USDT</p>
+            </div>
+            <div class="stat-card">
+                <h3>معدل النجاح</h3>
+                <p id="successRate">0%</p>
+            </div>
+        </div>
+
+        <div class="balance-card">
+            <h2>الرصيد والإحصائيات</h2>
+            <div id="balanceInfo">
+                <p>معلومات الرصيد ستظهر هنا بعد تسجيل الدخول وتكوين API</p>
+            </div>
+        </div>
+
+        <div class="trades-history">
+            <h2>سجل التداولات</h2>
+            <div id="tradesLog">
+                <p class="log-entry">سجل التداولات سيظهر هنا بعد تشغيل البوت</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="config.js"></script>
+    <script type="module" src="tradingMode.js"></script>
+    <script type="module" src="userManagement.js"></script>
+    <script type="module" src="binanceApi.js"></script>
+    <script type="module" src="marketAnalysis.js"></script>
+    <script type="module" src="tradingEngine.js"></script>
+    <script type="module" src="bot.js"></script>
+</body>
+</html>
